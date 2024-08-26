@@ -13,24 +13,22 @@ function getComputerChoice() {
         return 'scissors';
     }
 }
-function getHumanChoice() {
-    var humanPromt = prompt('Choose rock, paper or scissors');
-    humanPromt = humanPromt.toLowerCase();
-    if (humanPromt === 'rock') {
-        return 'rock';
-    }
-    else if (humanPromt === 'paper') {
-        return 'paper';
-    }
-    else if (humanPromt === 'scissors') {
-        return 'scissors';
-    }
-    else {
-        return 'Wrong value! Type "rock", "paper" or "scissors"';
-    }
-}
-var humanScore = 0;
-var computerScore = 0;
+var container = document.querySelector("#container");
+var userPaperBtn = document.createElement("button");
+userPaperBtn.textContent = "Paper";
+userPaperBtn.classList.add("paperBtn");
+userPaperBtn.classList.add("chooseBtn");
+var userRockBtn = document.createElement("button");
+userRockBtn.textContent = "Rock";
+userRockBtn.classList.add("rockBtn");
+userRockBtn.classList.add("chooseBtn");
+var userScissorsBtn = document.createElement("button");
+userScissorsBtn.textContent = "Scissors";
+userScissorsBtn.classList.add("scissorsBtn");
+userScissorsBtn.classList.add("chooseBtn");
+container.appendChild(userPaperBtn);
+container.appendChild(userRockBtn);
+container.appendChild(userScissorsBtn);
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         return "It's draw!";
@@ -68,20 +66,5 @@ function playRound(humanChoice, computerChoice) {
         return 'Wrong value! Type "rock", "paper" or "scissors';
     }
 }
-function playGame() {
-    for (var i = 0; i < 5; i++) {
-        console.log(playRound(getHumanChoice(), getComputerChoice()));
-        console.log('Your score is: ' + humanScore);
-        console.log('Computer score is: ' + computerScore);
-    }
-    if (computerScore > humanScore) {
-        console.log('You lose this game!');
-    }
-    else if (computerScore < humanScore) {
-        console.log('You win! Сongratulations!');
-    }
-    else {
-        console.log("It's draw, man!");
-    }
-}
-playGame();
+var humanScore = 0;
+var computerScore = 0;

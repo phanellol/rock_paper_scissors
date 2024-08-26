@@ -13,22 +13,27 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanPromt = prompt('Choose rock, paper or scissors');
-    humanPromt = humanPromt.toLowerCase()
-    if (humanPromt === 'rock') {
-        return 'rock';
-    } else if (humanPromt === 'paper') {
-        return 'paper';
-    } else if (humanPromt === 'scissors') {
-        return 'scissors'
-    } else {
-        return 'Wrong value! Type "rock", "paper" or "scissors"'
-    }
-}
+const container = document.querySelector("#container");
 
-let humanScore = 0;
-let computerScore = 0;
+
+const userPaperBtn = document.createElement("button");
+userPaperBtn.textContent = "Paper";
+userPaperBtn.classList.add("paperBtn");
+userPaperBtn.classList.add("chooseBtn");
+
+const userRockBtn = document.createElement("button");
+userRockBtn.textContent = "Rock"
+userRockBtn.classList.add("rockBtn");
+userRockBtn.classList.add("chooseBtn");
+
+const userScissorsBtn = document.createElement("button");
+userScissorsBtn.textContent = "Scissors"
+userScissorsBtn.classList.add("scissorsBtn");
+userScissorsBtn.classList.add("chooseBtn");
+
+container.appendChild(userPaperBtn);
+container.appendChild(userRockBtn);
+container.appendChild(userScissorsBtn);
 
 function playRound(humanChoice: string, computerChoice: string) {
     if (humanChoice === computerChoice) {
@@ -63,19 +68,5 @@ function playRound(humanChoice: string, computerChoice: string) {
     }
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(getHumanChoice(), getComputerChoice()));
-        console.log('Your score is: ' + humanScore);
-        console.log('Computer score is: ' + computerScore);
-    }
-    if (computerScore > humanScore) {
-        console.log('You lose this game!');
-    } else if (computerScore < humanScore) {
-        console.log('You win! Сongratulations!');
-    } else {
-        console.log("It's draw, man!");
-    }
-}
-
-playGame();
+let humanScore = 0;
+let computerScore = 0;
