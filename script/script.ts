@@ -13,8 +13,9 @@ function getComputerChoice() {
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
+const finalContainer = document.querySelector("#finalContainer");
+
+
 
 const container = document.querySelector("#container");
 
@@ -36,8 +37,23 @@ userScissorsBtn.classList.add("scissorsBtn");
 userScissorsBtn.classList.add("chooseBtn");
 let userScissors = "scissors";
 
+let humanScore = 0;
+let computerScore = 0;
 
 
+const results = document.createElement("div");
+results.classList.add("resultsClass");
+results.textContent = "Points";
+const humanScoreDiv = document.createElement("div");
+humanScoreDiv.classList.add("humanScoreClass");
+humanScoreDiv.textContent = `Your score is: ${humanScore}`;
+const computerScoreDiv = document.createElement("div");
+computerScoreDiv.classList.add("computerScoreClass");
+computerScoreDiv.textContent = `Computer score is: ${computerScore}`;
+
+container.appendChild(results);
+results.appendChild(humanScoreDiv);
+results.appendChild(computerScoreDiv);
 
 container.appendChild(userPaperBtn);
 container.appendChild(userRockBtn);
@@ -55,16 +71,19 @@ function playRoundPaper() {
         humanWin.textContent = "You win! Paper beats Rock"
         container.appendChild(humanWin);
         ++humanScore;
+        humanScoreDiv.textContent = `Your score is: ${humanScore}`;
     } else if (computerChoice === "scissors") {
         let computerWin = document.createElement("p");
         computerWin.textContent = "You lose! Scissors beats paper";
         container.appendChild(computerWin);
         ++computerScore;
+        computerScoreDiv.textContent = `Computer score is: ${computerScore}`;
     } else {
         alert("Wrong!");
     }
     console.log(`Youre score is ${humanScore}`);
     console.log(`Computer score is ${computerScore}`);
+    finalCheck();
 }
 
 function playRoundRock() {
@@ -78,16 +97,19 @@ function playRoundRock() {
         humanWin.textContent = "You win! Rock beats scissors"
         container.appendChild(humanWin);
         ++humanScore;
+        humanScoreDiv.textContent = `Your score is: ${humanScore}`;
     } else if (computerChoice === "paper") {
         let computerWin = document.createElement("p");
         computerWin.textContent = "You lose! Paper beats rock";
         container.appendChild(computerWin);
         ++computerScore;
+        computerScoreDiv.textContent = `Computer score is: ${computerScore}`;
     } else {
         alert("Wrong!");
     }
     console.log(`Youre score is ${humanScore}`);
     console.log(`Computer score is ${computerScore}`);
+    finalCheck();
 }
 
 function playRoundScissors() {
@@ -101,34 +123,35 @@ function playRoundScissors() {
         humanWin.textContent = "You win! Scissors beats paper"
         container.appendChild(humanWin);
         ++humanScore;
+        humanScoreDiv.textContent = `Your score is: ${humanScore}`;
     } else if (computerChoice === "rock") {
         let computerWin = document.createElement("p");
         computerWin.textContent = "You lose! Rock beats paper";
         container.appendChild(computerWin);
         ++computerScore;
+        computerScoreDiv.textContent = `Computer score is: ${computerScore}`;
     } else {
         alert("Wrong!");
     }
     console.log(`Youre score is ${humanScore}`);
     console.log(`Computer score is ${computerScore}`);
-
+    finalCheck();
 }
 
 userPaperBtn.addEventListener("click", playRoundPaper);
 userRockBtn.addEventListener("click", playRoundRock);
 userScissorsBtn.addEventListener("click", playRoundScissors);
 
-const results = document.createElement("div");
-results.classList.add("resultsClass");
-results.textContent = "Points";
-const humanScoreDiv = document.createElement("div");
-humanScoreDiv.classList.add("humanScoreClass");
-humanScoreDiv.textContent = `Your score is: ${humanScore}`;
-const computerScoreDiv = document.createElement("div");
-computerScoreDiv.classList.add("computerScoreClass");
-computerScoreDiv.textContent = `Computer score is: ${humanScore}`;
-
-container.appendChild(results);
-results.appendChild(humanScoreDiv);
-results.appendChild(computerScoreDiv);
-
+function finalCheck() {
+    if (humanScore === 5) {
+        const finalHuman = document.createElement("div");
+        finalHuman.classList.add("finalDiv");
+        finalHuman.textContent = "Game is over. You win! You take 5 point first";
+        finalContainer.appendChild(finalHuman);
+    } else if (computerScore === 5) {
+        const finalComp = document.createElement("div");
+        finalComp.classList.add("finalDiv");
+        finalComp.textContent = "Game is over. You lose! Computer take 5 point first";
+        finalContainer.appendChild(finalComp);
+    }
+}
